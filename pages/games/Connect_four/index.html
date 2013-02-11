@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Connect 4</title>
+		<link rel="stylesheet" type="text/css" href="">
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script>
+			$(function draw_board(){
+				for(i = 0; i < 8; i++){
+					document.write("<div class='row"+i+"'>");
+					for(j = 0; j < 7; j++){
+						document.write("<div class='column"+j+"'></div>");
+					}
+					document.write("</div>");
+				}
+			});
+		</script>
+	</head>
+	<body>
+		<script>draw_board();</script>
+	</body>
+</html>
