@@ -1,0 +1,38 @@
+@grid: 100px;
+@grid-color: #FFCC11;
+@border-width: 1px;
+
+.grid {
+	border: @border-width solid @grid-color;
+	margin: 0;
+	padding: 0;
+	width: @grid;
+	height: @grid;
+}
+.grid-top {
+	.grid;
+	border-top: none;
+}
+.grid-left {
+	.grid;
+	border-left: none;
+}
+.grid-right {
+	.grid;
+	border-right: none;
+}
+.grid-bottom {
+	.grid;
+	border-bottom: none;
+}
+
+.board {
+	border: 5px solid @grid-color;
+	width: (@grid+@border-width+1)*7;
+	height: (@grid+@border-width+1)*6;
+}
+
+.column {
+	width: @grid*7;
+	height: @grid;
+}
