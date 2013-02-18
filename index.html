@@ -11,6 +11,14 @@
 		<script>
 			$(document).ready(function() {
 				draw_grid(6,7);
+				
+				$(".cell").click(function() {
+					var colnum = $(this).attr("id");
+					colnum = colnum.substring(1,colnum.indexOf("r"));
+					
+					alert(colnum);
+					}
+				)
 			});
 		</script>
 	</body>
