@@ -1,34 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Connect 4</title>
-		<link rel="stylesheet" type="text/css" href="">
+		<link rel="stylesheet" type="text/css" href="css/connect.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script type="text/javascript" src="js/game.js"></script>
+		<script type="text/javascript" src="js/connect.js"></script>
 	</head>
-
 	<body>
-		<header>
-			<h1>Connect Four</h1>
-			<nav>
-		  	<ul>
-		   		<li>
-		      	<a href="#">Home</a>
-		    	</li>
-		    	<li>
-		      	<a href="#">About</a>
-		    	</li>
-		    	<li>
-		      	<a href="#">Contact</a>
-		    	</li>
-		  	</ul>
-			</nav>
-		</header>
-
-		<div id="grid"></div>
-
-		<footer>
-		  <p>&copy; 2013 Octopod Games</p>
-		</footer>
+	<div id="board"></div>
+		<script>
+			$(document).ready(function() {
+				draw_grid(6,7);
+			});
+		</script>
 	</body>
 </html>
