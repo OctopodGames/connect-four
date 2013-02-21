@@ -1,0 +1,53 @@
+/* CSS Document */
+body {
+  margin : 2px; 
+}
+
+h1 {
+  text-align : center;
+} 
+
+#gameInfo{
+  height : 540px;
+  width : 172px;
+  background-color : lilac;
+  float : left;
+  text-align : center;
+}
+
+.column {
+  border-left : 5px solid black;
+  border-bottom : 5px solid black;
+  height : 540px;
+  width : 86px;
+/*  background-color : pink;*/
+  float : left;
+  text-align : center;
+}
+
+.lastColumn {
+  border-left : 5px solid black;  
+  height : 540px;
+  width : 5px;
+  float : left;
+}
+
+svg {
+  height : 82px;
+  width : 82px;
+  padding : 0px;
+  margin : 2px;
+  background-color : green;
+}
+
+circle {
+  padding : 0px;
+  margin : 0px;
+  background-color : cyan;
+}
+
+#bottom {
+  border-bottom : 5px solid black;
+  width : 650px;
+  clear: both;
+}

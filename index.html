@@ -4,21 +4,50 @@
 		<title>Connect 4</title>
 		<link rel="stylesheet" type="text/css" href="css/connect.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/connect.js"></script>
 	</head>
 	<body>
-	<div id="board"></div>
+		<div id='wrapper'>
+			<div id='left'>
+				<div id='player'>
+					<div id='pnum' class='player1'></div>
+					<div id='pname'>Player 1</div>
+				</div>
+			</div>
+			<div id="board"></div>
+			<div id='right'>
+				This is where the score stuff goes...
+			</div>
+		</div>
+
 		<script>
 			$(document).ready(function() {
+				/* All used functions are in connect.js */
+				$('#player').data( 'player', 0);
 				draw_grid(6,7);
 				
 				$(".cell").click(function() {
-					var colnum = $(this).attr("id");
-					colnum = colnum.substring(1,colnum.indexOf("r"));
-					
-					alert(colnum);
+					var id = $(this).attr("id");
+					column = id.substring(1,id.indexOf("r"));
+					//we'll get this from findRow later - stub for now
+					row = id.substring(id.indexOf("r")+1);
+					//var row=findRow(column);
+					if(row%7!==0||row==0){
+						//alert("ready!");
+						var player = $('#player').data( 'player');
+						//alert("set!");
+						setChecker(row, column, player);
+						//alert("go!");
+						animateChecker(row, column, player);
+						if(checkWin()){
+							endGame();
+						}else{
+							changePlayer();
+						}
 					}
-				)
+
+				})
 			});
 		</script>
 	</body>

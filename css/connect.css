@@ -1,3 +1,30 @@
+#left{
+float:left;
+}
+#right{
+float:left;
+}
+
+#board{
+float:left;
+}
+#pnum{
+	width:100px;
+	height:100px;
+}
+#pname{
+	width:100%;
+	text-align:center;
+}
+.player1{
+	background-image:url('../img/red.png');
+}
+.player2{
+	background-image:url('../img/black.png');
+}
+.free{
+	background-image:none;
+}
 
 .row{
 	clear:both;/* deals with column floats */
@@ -8,10 +35,18 @@
 .cell{
 	border-right:1px solid #000;/* outline grid for visibility*/
 	border-bottom:1px solid #000;
-	padding:5px;
 	float:left; /* or display inline - either would probably work. */
-	cursor:pointer; 
+	cursor:pointer;
+	height:100px;
+	width:100px; 
 }
-.cell:first-child{
+.cell:first-child {
 	border-left:1px solid #000;
+}
+.black_checker {
+	background-image:url('../img/black.png');
+}
+
+.red_checker{
+	background-image:url('../img/red.png');
 }
