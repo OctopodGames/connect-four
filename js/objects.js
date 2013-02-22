@@ -3,8 +3,19 @@
  * Object prototype & methods for game objects 
  */
 
-var Square = function(player) {
-	/* Square objects represent the individual squares on the board
+function Game() {
+	/* Global object to control game logic 
+	 *
+	 * Variables:
+	 * - (Board) gameBoard: Game board object
+	 * - (Player[]) players: Array of players
+	 */
+
+
+}
+
+function Square() {
+	/* Represents the individual squares on the board
 	 *
 	 * Variables:
 	 * - (int) player: 0 for Player1, 1 for Player2
