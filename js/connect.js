@@ -76,11 +76,6 @@ function animateChecker(row, col, player){
 // resets board and player
 function newGame() {
 	initPlayer();
-	/*
-	$('#player').data( 'player', PLAYER_ONE);
-	$('#pname').text('Player 1');
-	$('#pnum').addClass('player1').removeClass('player2');
-	*/
 	draw_grid(NUM_ROWS,NUM_COLS);
 	
 	$(".cell").click(function() {
