@@ -1,3 +1,9 @@
+// Constants
+var PLAYER_ONE = 0;
+var PLAYER_TWO = 1;
+var NUM_ROWS = 6;
+var NUM_COLS = 7;
+
 /* function to create board
 /* renamed and added parameters to create 
 /* a function that we can reuse later */
@@ -27,6 +33,13 @@ function changePlayer(){
 	}
 	$('#pnum').toggleClass('player1').toggleClass('player2');
 }
+
+function initPlayer(){
+	$('#player').data( 'player', PLAYER_ONE);
+	$('#pname').text('Player 1');
+	$('#pnum').addClass('player1').removeClass('player2');
+}
+
 function setChecker(row, column, player){
 	/* Assume Susan gets it to work... */
 }
@@ -58,4 +71,37 @@ function animateChecker(row, col, player){
 		}
 	}
 	swap(6);
+}
+
+// resets board and player
+function newGame() {
+	initPlayer();
+	/*
+	$('#player').data( 'player', PLAYER_ONE);
+	$('#pname').text('Player 1');
+	$('#pnum').addClass('player1').removeClass('player2');
+	*/
+	draw_grid(NUM_ROWS,NUM_COLS);
+	
+	$(".cell").click(function() {
+		var id = $(this).attr("id");
+		column = id.substring(1,id.indexOf("r"));
+		//we'll get this from findRow later - stub for now
+		row = id.substring(id.indexOf("r")+1);
+		//var row=findRow(column);
+		if(row%7!==0||row==0){
+			//alert("ready!");
+			var player = $('#player').data( 'player');
+			//alert("set!");
+			setChecker(row, column, player);
+			//alert("go!");
+			animateChecker(row, column, player);
+			if(checkWin()){
+				endGame();
+			}else{
+				var current = $('#player').data( 'player');
+				changePlayer();
+			}
+		}
+	})
 }
