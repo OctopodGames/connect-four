@@ -100,3 +100,16 @@ function newGame() {
 		}
 	})
 }
+
+function displayTabs() {
+	var tabPanes = $('div.tabPanel > div');
+	
+	$('div.tabPanel ul.tabs a').click(function () {
+		tabPanes.hide().filter(this.hash).show();
+		
+		$('div.tabPanel ul.tabs a').removeClass('selected');
+		$(this).addClass('selected');
+		
+		return false;
+	}).filter(':first').click();
+}

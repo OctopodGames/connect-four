@@ -3,6 +3,7 @@
 	<head>
 		<title>Connect 4</title>
 		<link rel="stylesheet" type="text/css" href="css/connect.css">
+		<link rel="stylesheet" type="text/css" href="css/tabs.css">
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="js/connect.js"></script>
@@ -17,23 +18,30 @@
 			</div>
 			<div id="board"></div>
 			<div id='right'>
-				<ul class='tabs'>
-					<li><a href="#tab1">Rules</a></li>
-					<li><a href="#tab2">Scores</a></li>
-					<li><a href="#tab3">Chat</a></li>
-				</ul>
-				
-				<!-- tab "panes" -->
-				<div id="tab1">
-					<H2>Rules:</H2>
-					<ul>
-						<li>Players take turns dropping checkers into 7x6 grid</li>
-						<li>First player to get 4-in-a-row wins the game</li>
-						<li>Up, down, left, right, and diagonal wins are possible</li>
+				<div class="tabPanel">
+					<!-- tabs -->
+					<ul class="tabs">
+						<li><a href="#rulesPane">Rules</a></li>
+						<li><a href="#scoresPane">Scores</a></li>
+						<li><a href="#chatPane">Chat</a></li>
 					</ul>
-				</div>
-				<div id="tab2">High scores would go here...</div>
-				<div id="tab3">A Chat pane may go here...</div>
+					
+					<!-- tab panes -->
+					<div id="rulesPane">
+						<H2>Rules:</H2>
+							<ul>
+								<li>Players take turns dropping checkers into 7x6 grid</li>
+								<li>First player to get 4-in-a-row wins the game</li>
+								<li>Up, down, left, right, and diagonal wins are possible</li>
+							</ul>
+					</div>
+					<div id="scoresPane">
+						<p>High scores would go here...</p>
+					</div>
+					<div id="chatPane">
+						<p>A Chat pane may go here...</p>
+					</div>
+				</div>				
 				<div id='resetButton'>
 					<input onclick="newGame();" id="newGameButton" type="Submit" value="New Game" />
 				</div>
@@ -44,7 +52,7 @@
 			$(document).ready(function() {
 				/* All used functions are in connect.js */
 				newGame();
-
+				displayTabs();
 			});
 		</script>
 	</body>
