@@ -1,0 +1,32 @@
+ul.tabs {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+ul.tabs li {
+	display: inline;
+}
+
+ul.tabs li a {
+	padding: 3px 5px;
+	background-color: #999999;
+	color: white;
+	text-decoration: none;
+}
+
+ul.tabs li a.selected {
+	background-color: black;
+}
+
+ul.tabs li a:hover {
+	background-color: #333333;
+}
+
+div.tabPanel > div {
+	margin-top: 2px;
+	padding: 5px;
+	border: 1px solid black;
+}
+
+
