@@ -3,9 +3,6 @@
 	<head>
 		<title>Connect 4</title>
 		<link rel="stylesheet" type="text/css" href="css/connect.css">
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/connect.js"></script>
 	</head>
 	<body>
 		<div id='wrapper'>
@@ -21,8 +18,15 @@
 			</div>
 		</div>
 
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="js/connect.js"></script>
+		<script type="text/javascript" src="js/objects.js"></script>
+
 		<script>
 			$(document).ready(function() {
+					var board = new Board(6, 7);
+					board.newBoard();
 				/* All used functions are in connect.js */
 				$('#player').data( 'player', 0);
 				draw_grid(6,7);
