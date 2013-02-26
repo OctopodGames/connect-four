@@ -1,0 +1,53 @@
+procedure DFS(G,v):
+    label v as explored
+    for all edges e in G.adjacentEdges(v) do
+        if edge e is unexplored then
+            w ← G.adjacentVertex(v,e)
+            if vertex w is unexplored then
+                label e as a discovery edge
+                recursively call DFS(G,w)
+            else
+                label e as a back edge
+
+procedure BFS(G,v):
+    create a queue Q
+    enqueue v onto Q
+    mark v
+    while Q is not empty:
+        t ← Q.dequeue()
+        if t is what we are looking for:
+            return t
+        for all edges e in G.adjacentEdges(t) do
+            u ← G.adjacentVertex(t,e)
+            if u is not marked:
+                mark u
+                enqueue u onto Q
+    return none
+
+square = {
+  player : '',
+  adjacent : array(
+    1 : '',
+    2 : '',
+    3 : '',
+    4 : '',
+    5 : '',
+    6 : '',
+    7 : '',
+    8 : ''
+  )
+}
+
+piece = {
+  player : '',
+  counters : array(
+    V : '',
+    H : '',
+    TL: '',
+    TR: ''
+  )
+}
+
+812
+703
+654

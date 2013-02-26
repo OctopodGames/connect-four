@@ -1,11 +1,13 @@
-var NUM_ROWS, NUM_COLS;
+// Constants
+var PLAYER_ONE = 0;
+var PLAYER_TWO = 1;
+var NUM_ROWS = 6;
+var NUM_COLS = 7;
 
 /* function to create board
 /* renamed and added parameters to create 
 /* a function that we can reuse later */
 function draw_grid(rows,cols){
-	NUM_ROWS = rows-1;
-	NUM_COLS = cols-1;
 	var board='';
 	for(i = rows-1; i >= 0; i--){
 		board+="<div class='row' id='row"+i+"'>";
@@ -18,117 +20,96 @@ function draw_grid(rows,cols){
 		board+="</div>";
 	}
 	$('#board').html(board);
-	$('#player').data( 'player', 1);
-	$('.cell').each(function(){
-		$(this).data({
-			'P': 0, //player
-			'TL':0, //top-left
-			'T':0, //top-center
-			'TR':0, //top-right
-			'L':0, //center-left
-			'R':0, //center-left
-			'BL':0, //bottom-left
-			'B':0, //bottom-left
-			'BR':0 //bottom-left
-		});
-	})
 }
 
 function changePlayer(){
 	var current = $('#player').data( 'player');
-	//switch variable
-	var newp = (current == 1)?2:1;
-	$('#player').data( 'player', newp);
-	$('#pname').text('Player '+newp);
+	if(current==1){
+		$('#player').data( 'player', 0);
+		$('#pname').text('Player 1');
+	}else{
+		$('#player').data( 'player', 1);
+		$('#pname').text('Player 2');
+	}
 	$('#pnum').toggleClass('player1').toggleClass('player2');
 }
 
-/**
-*  Call this and it will
-*  update the cell data to match (for Joe)
-* @param: cell - the cell DOM id
-* @param: o - origin - either the parent cell (C)
-* or the direction we're headed
-*/
-function updateCell(cell,o){
-	var r = cell.substring(cell.indexOf("r")+1);
-	var c = cell.substring(1,cell.indexOf("r"));
-	var p = $('#player').data('player');
-	o = typeof o !== 'undefined' ? o : 'C';
-	var ck = o == 'C';
-
-	
-	if(c>0){//check cells to the left
-		if((ck || o=='L')){
-
-		}
-		if(r<NUM_ROWS && (ck || o=="TL")){
-
-		}
-		if(r>0 && (ck || o=="BL")){
-
-		}
-	}
-	if(c<NUM_COLS){//check cells to the right
-		if(ck || o=='R'){
-
-		}
-		if(r<NUM_ROWS && (ck || o=="TR") ){
-
-		}
-		if(r>0 && (ck || o=="BR") ){
-
-		}
-	}
-	if(r>0){//check cell below
-		if(ck || o=="B"){
-
-		}
-	}
-	if(r<NUM_ROWS){//check cell above
-		if(ck || o=="T"){
-
-		}
-	}
+function initPlayer(){
+	$('#player').data( 'player', PLAYER_ONE);
+	$('#pname').text('Player 1');
+	$('#pnum').addClass('player1').removeClass('player2');
 }
 
 function setChecker(row, column, player){
 	/* Assume Susan gets it to work... */
 }
-
 function checkWin(){
 	/* Assume Susan gets it to work... */
 	return false;
 }
-
 function findRow(col){
-	//default row is 0 - bottomost
+	//row is 0 - bottomost
 	return 0;
 }
+function tempClass(cell,tclass){
+	$(cell).addClass(ckrClass,1000,"swing",function(){
+		$(cell).removeClass(ckrClass,300);
+	});
+}
 
-function animateChecker(col, player){
+function animateChecker(row, col, player){
+	player+=1;
 	var ckrClass = 'player'+player;
 	function swap(i){
 		var cell='#c'+col+'r'+i;
 		var last='#c'+col+'r'+(i+1);
-		var next='#c'+col+'r'+(i-1);
-		if($(cell).data('P')==0){			
-			$(cell).addClass(ckrClass,100,"linear");
-			$(last).removeClass(ckrClass,100,"linear");
-			i--;
-			if($(next).data('P')==0){
-				window.setTimeout(function(){swap(i)},50);
-			}else{
-				$(cell).data('P',player);					
-				if(checkWin()){
-					endGame();
-				}else{
-					changePlayer();
-				}
-			}
-		}else{
-			alert("That column is full!");
+		$(cell).addClass(ckrClass,100,"swing");
+		$(last).removeClass(ckrClass,100,"swing");
+		i--;
+		if(i>=row){
+			window.setTimeout(function(){swap(i)},50);
 		}
 	}
-	swap(NUM_ROWS);
+	swap(6);
+}
+
+// resets board and player
+function newGame() {
+	initPlayer();
+	draw_grid(NUM_ROWS,NUM_COLS);
+	
+	$(".cell").click(function() {
+		var id = $(this).attr("id");
+		column = id.substring(1,id.indexOf("r"));
+		//we'll get this from findRow later - stub for now
+		row = id.substring(id.indexOf("r")+1);
+		//var row=findRow(column);
+		if(row%7!==0||row==0){
+			//alert("ready!");
+			var player = $('#player').data( 'player');
+			//alert("set!");
+			setChecker(row, column, player);
+			//alert("go!");
+			animateChecker(row, column, player);
+			if(checkWin()){
+				endGame();
+			}else{
+				var current = $('#player').data( 'player');
+				changePlayer();
+			}
+		}
+	})
+}
+
+function displayTabs() {
+	var tabPanes = $('div.tabPanel > div');
+	
+	$('div.tabPanel ul.tabs a').click(function () {
+		tabPanes.hide().filter(this.hash).show();
+		
+		$('div.tabPanel ul.tabs a').removeClass('selected');
+		$(this).addClass('selected');
+		
+		return false;
+	}).filter(':first').click();
 }
