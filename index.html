@@ -22,15 +22,14 @@
 						<li><a href="#scoresPane">Scores</a></li>
 						<li><a href="#chatPane">Chat</a></li>
 					</ul>
-					
 					<!-- tab panes -->
 					<div id="rulesPane">
 						<H2>Rules:</H2>
-							<ul>
-								<li>Players take turns dropping checkers into 7x6 grid</li>
-								<li>First player to get 4-in-a-row wins the game</li>
-								<li>Up, down, left, right, and diagonal wins are possible</li>
-							</ul>
+						<ul>
+							<li>Players take turns dropping checkers into 7x6 grid</li>
+							<li>First player to get 4-in-a-row wins the game</li>
+							<li>Up, down, left, right, and diagonal wins are possible</li>
+						</ul>
 					</div>
 					<div id="scoresPane">
 						<p>High scores would go here...</p>
@@ -52,11 +51,17 @@
 
 		<script>
 			$(document).ready(function() {
-					var board = new Board(6, 7);
-					board.newBoard();
-				/* All used functions are in connect.js */
-				newGame();
+				draw_grid(6,7);
 				displayTabs();
+				
+				$('.cell').click(
+				function(){
+					$('.cell').off('click');
+					id = $(this).attr('id');
+					column = id.substring(1,id.indexOf("r"));
+					animateChecker(column, $('#player').data( 'player'));
+				}
+				);
 			});
 		</script>
 	</body>
