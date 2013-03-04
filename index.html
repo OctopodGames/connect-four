@@ -2,8 +2,7 @@
 <html>
 	<head>
 		<title>Connect 4</title>
-		<link rel="stylesheet" type="text/css" href="css/connect.css">
-		<link rel="stylesheet" type="text/css" href="css/tabs.css">
+		<link rel="stylesheet" type="text/css" href="css/connect.min.css">
 	</head>
 	<body>
 		<div id='wrapper'>
@@ -15,7 +14,7 @@
 			</div>
 			<div id="board"></div>
 			<div id='right'>
-				<div class="tabPanel">
+				<div class="tabpanel">
 					<!-- tabs -->
 					<ul class="tabs">
 						<li><a href="#rulesPane">Rules</a></li>
@@ -26,7 +25,8 @@
 					<div id="rulesPane">
 						<H2>Rules:</H2>
 						<ul>
-							<li>Players take turns dropping checkers into 7x6 grid</li>
+							<li>Players take turns dropping checkers onto 7x6 grid</li>
+							<li>Just click on a column to drop a checker</li> 
 							<li>First player to get 4-in-a-row wins the game</li>
 							<li>Up, down, left, right, and diagonal wins are possible</li>
 						</ul>
@@ -39,15 +39,14 @@
 					</div>
 				</div>				
 				<div id='resetButton'>
-					<input onclick="newGame();" id="newGameButton" type="Submit" value="New Game" />
+					<input onclick="draw_grid(6,7)" id="newGameButton" type="Submit" value="New Game" />
 				</div>
 			</div>
 		</div>
 
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
-		<script type="text/javascript" src="js/connect.js"></script>
-		<script type="text/javascript" src="js/objects.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+		<script src="js/connect.min.js"></script>
 
 		<script>
 			$(document).ready(function() {
@@ -59,7 +58,8 @@
 					$('.cell').off('click');
 					id = $(this).attr('id');
 					column = id.substring(1,id.indexOf("r"));
-					animateChecker(column, $('#player').data( 'player'));
+					var row=findRow(column, player);
+					setChecker(row, column, $('#player').data( 'player'));
 				}
 				);
 			});
